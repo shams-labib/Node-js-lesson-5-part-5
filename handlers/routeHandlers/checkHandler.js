@@ -173,23 +173,29 @@ handler._check.post = (requestProperties, callback) => {
 //   "method": "GET",
 //   "successCodes": [200, 201],
 //   "timeoutSeconds": 2
-// } and eta must check korba tomar .data er modde checks folder ache, and token er validity ache
+// } and eta must check korba tomar .data er modde checks folder ache, and token er validity ache, and then success hole checks folder modde data create hobe
 
+// step-23 : let's start get worked
 handler._check.get = (requestProperties, callback) => {
+  // step-24 : and then amra tokenHandler er get theke id ta copy paste korbo
   const id =
     typeof requestProperties.queryStringObject.id === "string" &&
     requestProperties.queryStringObject.id.trim().length === 20
       ? requestProperties.queryStringObject.id
       : false;
 
+  //   step-25 : id thik thakle porer kaje jabo, jekhane data read korbo check folder er modde
   if (id) {
     // lookup the check
     data.read("checks", id, (err, checkData) => {
       if (!err && checkData) {
+        // step-26 : ekhane opur theke token ta niye ashbo c's amra ekhaneo header theke token ta niye verify korbo
         const token =
           typeof requestProperties.headersObject.token === "string"
             ? requestProperties.headersObject.token
             : false;
+
+        // step-27: then tokenHandler diye verify korbo
 
         tokenHandler._token.verify(
           token,
@@ -217,6 +223,9 @@ handler._check.get = (requestProperties, callback) => {
   }
 };
 
+// step-28 : and then amader check korar pala, amra ei url er modde valid check id dibo and must headers er modde http://localhost:3000/check?id=wjhkliib1wy5cl45738q diye
+
+// step-29 : so let's start put er kaj boobie, so amra ekhane user je id ta update korte casce tar id dibe, so seta check korar jonno protocol take copy kore niye ashbo, seta change kore niche id te convert kore nibo
 handler._check.put = (requestProperties, callback) => {
   const id =
     typeof requestProperties.body.id === "string" &&
@@ -224,6 +233,7 @@ handler._check.put = (requestProperties, callback) => {
       ? requestProperties.body.id
       : false;
 
+  //   step30 : then amra post theke sob authenticator code niye eshe bosay dibo ekhane
   // validate inputs
   const protocol =
     typeof requestProperties.body.protocol === "string" &&
@@ -257,21 +267,26 @@ handler._check.put = (requestProperties, callback) => {
       ? requestProperties.body.timeoutSeconds
       : false;
 
+  //   step-31 : then amader 1st id thik thakte hobe then, validation er jekono ekta thik thakte hobe nahole ki change korbo put e
   if (id) {
     if (protocol || url || method || successCodes || timeoutSeconds) {
+      // step-32 : and then check folder er modde khujbo
       data.read("checks", id, (err1, checkData) => {
         if (!err1 && checkData) {
+          // data ta parseJSON e convert korbo
           const checkObject = parseJSON(checkData);
           const token =
             typeof requestProperties.headersObject.token === "string"
               ? requestProperties.headersObject.token
               : false;
+          //   step-33 : token diye verify korbo then
 
           tokenHandler._token.verify(
             token,
             checkObject.userPhone,
             (tokenIsValid) => {
               if (tokenIsValid) {
+                // step-34 : tokenValid hole amra ekta ekta kore field check korbo prothome protocol check kore seta alt+shift diye aro niche copy kore, then url, method, successcode etc check korbo
                 if (protocol) {
                   checkObject.protocol = protocol;
                 }
@@ -287,6 +302,7 @@ handler._check.put = (requestProperties, callback) => {
                 if (timeoutSeconds) {
                   checkObject.timeoutSeconds = timeoutSeconds;
                 }
+                // step-35 : then sob kisu thik thakle amra data ta khuje update kore dibo
                 // store the checkObject
                 data.update("checks", id, checkObject, (err2) => {
                   if (!err2) {
@@ -322,6 +338,7 @@ handler._check.put = (requestProperties, callback) => {
   }
 };
 
+// step-36 : put onk vlo chele tai take check korte hobena, let's start delete
 handler._check.delete = (requestProperties, callback) => {
   const id =
     typeof requestProperties.queryStringObject.id === "string" &&
