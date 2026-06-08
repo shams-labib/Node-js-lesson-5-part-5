@@ -10,7 +10,7 @@
 
 <!-- TABLE OF CONTENT -->
 
-## Table of Content
+## Table of Contents
 
 - [How to run](#how-to-run)
   - [New Users](#new-users-who-never-cloned-this-repository-before)
