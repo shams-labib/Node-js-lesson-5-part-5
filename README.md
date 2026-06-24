@@ -8,7 +8,7 @@
 <p align="center">
   <h3 align="center"><a href="https://github.com/learnwithsumit/uptime-monitoring-api-raw-node">Raw Node.js Project - Uptime Monitoring API - Lesson 5</a></h3>
 
-<!-- TABLE OF CONTENT-->
+<!-- TABLE OF CONTENTS-->
 
 ## Table of Content
 
