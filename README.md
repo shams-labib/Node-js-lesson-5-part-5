@@ -3,7 +3,7 @@
 [![Instagram][instagram-shield]][instagram-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-<!-- PROJECT LOGOS -->
+<!-- PROJECT LOGO -->
 <br />
 <p align="center">
   <h3 align="center"><a href="https://github.com/learnwithsumit/uptime-monitoring-api-raw-node">Raw Node.js Project - Uptime Monitoring API - Lesson 5</a></h3>
